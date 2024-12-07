@@ -208,19 +208,15 @@ form.addEventListener('submit', (e) => {
  * FOOTER
  */
 
-// Get the footer form element
-const footerForm = document.querySelector('.input-wrapper');
+// Get the form element
+const myForm = document.querySelector('.input-wrapper');
 
-// Get the input field and button elements
-const inputField = footerForm.querySelector('input[name="email_address"]');
-const submitButton = footerForm.querySelector('.btn.btn-secondary[type="submit"]');
-
-// Add an event listener to the submit button
-submitButton.addEventListener('click', (e) => {
+// Add an event listener to the form submission
+form.addEventListener('submit', (e) => {
   e.preventDefault(); // Prevent the default form submission
 
   // Get the input value
-  const email = inputField.value.trim();
+  const email = document.querySelector('#subscriber-email').value.trim();
 
   // Check if the email is missing
   if (email === '') {
@@ -231,13 +227,27 @@ submitButton.addEventListener('click', (e) => {
   // Validate the email format
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (emailRegex.test(email)) {
-    // Simulate a successful subscription after a short delay
-    setTimeout(() => {
-      alert('Thank you for subscribing to our mail list!');
-    }, 1000); // 1 second delay
+    // Send a POST request to the backend to subscribe the user
+    fetch('/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert('Thank you for subscribing to our mail list!');
+        } else {
+          alert('Error subscribing to our mail list.');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } else {
     // If the email is invalid, prompt an error message
     alert('Please enter a valid email address.');
   }
 });
-
