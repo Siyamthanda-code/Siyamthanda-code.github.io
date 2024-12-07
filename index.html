@@ -1095,25 +1095,17 @@ At Bite, we're not just serving food – we're serving moments. Moments of joy, 
             Subscribe us & Get <span class="span">25% Off.</span>
           </p>
 
-          <form action="" class="input-wrapper">
+          <form action="/subscribe" method="post" class="input-wrapper">
             <div class="icon-wrapper">
-              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
 
-              <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
+                <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field" required>
             </div>
 
-            <button type="submit" class="btn btn-secondary"onclick="sendMail()">
-              <span class="text text-1">Subscribe</span>
-
-              <span class="text text-2" aria-hidden="true">Subscribe</span>
+            <button type="submit" class="btn btn-secondary" onclick="sendMail()">
+                <span class="text text-1">Subscribe</span>
+                <span class="text text-2" aria-hidden="true">Subscribe</span>
             </button>
-
-            <!-- Add a hidden input field to store the subscriber's email -->
-<input type="hidden" name="email" id="subscriber-email" value="">
-
-<!-- Update the form action to send a POST request to the backend -->
-<form action="/subscribe" method="post" class="input-wrapper">
-  <!-- ... -->
   
           </form>
 

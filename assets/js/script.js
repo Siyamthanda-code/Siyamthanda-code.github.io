@@ -208,23 +208,32 @@ form.addEventListener('submit', (e) => {
  * FOOTER
  */
 
-function sendMail(){
-  var params={
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value,
+function sendMail(event) {
+  // Prevent the default form submission
+  event.preventDefault();
+
+  // Get the email address from the input field
+  var email = document.querySelector("input[name='email_address']").value;
+
+  // Prepare the parameters for the email service
+  var params = {
+      email: email,
+      // You can add more parameters if needed
   };
 
   const serviceID = "service_4ezgvn9";
   const templateID = "template_kom7p67";
-  
+
+  // Send the email using EmailJS
   emailjs.send(serviceID, templateID, params)
-  .then(res=>{
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("message").value = "";
-    console.log(res);
-    alert("Your Message was sent successfully!!")
-  })
-  .catch(err=>console.log(err));
+      .then(res => {
+          // Clear the input field after successful submission
+          document.querySelector("input[name='email_address']").value = "";
+          console.log(res);
+          alert("Your Message was sent successfully!!");
+      })
+      .catch(err => console.log(err));
 }
+
+// Attach the sendMail function to the form submission
+document.querySelector('.input-wrapper form').addEventListener('submit', sendMail);
