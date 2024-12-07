@@ -12,9 +12,9 @@ Welcome to **BITE**, a web application designed for a local restaurant that allo
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript 
-- **Backend**: (Node.js)
-- **Database**: ( Firebase realtime database)
-- **Hosting**: Firebase Hosting
+- **Backend**: Node.js
+- **Database**: Firebase Realtime Database
+- **Hosting**: GitHub Pages
 
 ## Getting Started
 
@@ -23,10 +23,25 @@ To get a local copy of the project up and running, follow these simple steps:
 ### Prerequisites
 
 - Node.js and npm installed on your machine.
-- A Firebase account (if using Firebase for hosting and database).
+- A Firebase account (if using Firebase for the database).
 
 ### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Siyamthanda-code/Siyamthanda-code.github.io.git
+   git clone https://github.com/Siyamthanda-code/BITE.git
+
+2. Navigate into the project directory
+   ```bash
+   cd BITE
+
+3. Install the necessary dependancies
+   ```bash
+   npm install
+
+4. Start the application
+   ```bash
+   npm start
+
+### Live Demo
+https://siyamthanda-code.github.io/
