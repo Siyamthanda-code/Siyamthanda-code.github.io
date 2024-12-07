@@ -208,46 +208,23 @@ form.addEventListener('submit', (e) => {
  * FOOTER
  */
 
-// Get the form element
-const myForm = document.querySelector('.input-wrapper');
+function sendMail(){
+  var params={
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value,
+  };
 
-// Add an event listener to the form submission
-form.addEventListener('submit', (e) => {
-  e.preventDefault(); // Prevent the default form submission
-
-  // Get the input value
-  const email = document.querySelector('#subscriber-email').value.trim();
-
-  // Check if the email is missing
-  if (email === '') {
-    alert('Please enter your email address.');
-    return;
-  }
-
-  // Validate the email format
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (emailRegex.test(email)) {
-    // Send a POST request to the backend to subscribe the user
-    fetch('/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert('Thank you for subscribing to our mail list!');
-        } else {
-          alert('Error subscribing to our mail list.');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } else {
-    // If the email is invalid, prompt an error message
-    alert('Please enter a valid email address.');
-  }
-});
+  const serviceID = "service_4ezgvn9";
+  const templateID = "template_kom7p67";
+  
+  emailjs.send(serviceID, templateID, params)
+  .then(res=>{
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+    console.log(res);
+    alert("Your Message was sent successfully!!")
+  })
+  .catch(err=>console.log(err));
+}

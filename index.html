@@ -33,6 +33,15 @@
   <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
 
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "wLU48TQDY13rFAk04",
+      });
+    })();
+  </script>
 </head>
 
 <body id="top">
@@ -1093,7 +1102,7 @@ At Bite, we're not just serving food – we're serving moments. Moments of joy, 
               <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
             </div>
 
-            <button type="submit" class="btn btn-secondary">
+            <button type="submit" class="btn btn-secondary"onclick="sendMail()">
               <span class="text text-1">Subscribe</span>
 
               <span class="text text-2" aria-hidden="true">Subscribe</span>
