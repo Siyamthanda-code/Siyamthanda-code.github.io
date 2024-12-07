@@ -235,7 +235,7 @@ form.addEventListener('submit', (e) => {
 
 // Initialize EmailJS with your user ID
 (function(){
-  emailjs.init("siyamthanda"); // Replace with your EmailJS user ID
+  emailjs.init("Siyamthanda"); // Replace with your EmailJS user ID
 })();
 
 document.getElementById('subscribe-form').addEventListener('submit', function(event) {
