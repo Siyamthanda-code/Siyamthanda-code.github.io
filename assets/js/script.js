@@ -1,5 +1,21 @@
 'use strict';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBmpFz0tFFAgUZpNYee5tkE-UbmtU78kGQ",
+  authDomain: "bite-152e5.firebaseapp.com",
+  projectId: "bite-152e5",
+  storageBucket: "bite-152e5.firebasestorage.app",
+  messagingSenderId: "650796811681",
+  appId: "1:650796811681:web:c0ac9fe66bedae1e43b7e0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 /**
  * PRELOAD
@@ -187,6 +203,7 @@ form.addEventListener('submit', (e) => {
   const personSelect = document.querySelector('select[name="person"]');
   const reservationDateInput = document.querySelector('input[name="reservation-date"]');
   const timeSelect = document.querySelector('select[name="time"]'); 
+  const messageInput = document.querySelector('textarea[name="message"]');
 
   // Check if all required fields are filled out
   if (
@@ -196,13 +213,39 @@ form.addEventListener('submit', (e) => {
     reservationDateInput.value !== '' &&
     timeSelect.value !== ''
   ) {
-    // If all fields are filled out, prompt a success message
-    alert('Form submitted successfully!');
+    // Create a reservation object
+    const reservation = {
+      name: nameInput.value,
+      phone: phoneInput.value,
+      numberOfPeople: personSelect.value,
+      reservationDate: reservationDateInput.value,
+      time: timeSelect.value,
+      message: messageInput.value || '' // Optional message
+    };
+
+    // Push the reservation to the Firebase database
+    const reservationsRef = firebase.database().ref('reservations');
+    reservationsRef.push(reservation)
+      .then(() => {
+        // Clear the form fields after successful submission
+        nameInput.value = '';
+        phoneInput.value = '';
+        personSelect.value = '1-person'; // Reset to default
+        reservationDateInput.value = '';
+        timeSelect.value = '08:00am'; // Reset to default
+        messageInput.value = '';
+        alert('Reservation submitted successfully!');
+      })
+      .catch((error) => {
+        console.error('Error submitting reservation:', error);
+        alert('There was an error submitting your reservation.Please try again.');
+      });
   } else {
     // If any field is missing, prompt an error message
     alert('Please fill out all required information.');
   }
 });
+
 
 /**
  * FOOTER
@@ -210,7 +253,7 @@ form.addEventListener('submit', (e) => {
 
 // Initialize EmailJS with your user ID
 (function(){
-  emailjs.init("Siyamthanda"); // Replace with your EmailJS user ID
+  emailjs.init("siyamthanda"); // Replace with your EmailJS user ID
 })();
 
 document.getElementById('subscribe-form').addEventListener('submit', function(event) {
