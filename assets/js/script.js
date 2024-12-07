@@ -208,9 +208,13 @@ form.addEventListener('submit', (e) => {
  * FOOTER
  */
 
-function sendMail(event) {
-  // Prevent the default form submission
-  event.preventDefault();
+// Initialize EmailJS with your user ID
+(function(){
+  emailjs.init("Siyamthanda"); // Replace with your EmailJS user ID
+})();
+
+document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
 
   // Get the email address from the input field
   var email = document.querySelector("input[name='email_address']").value;
@@ -218,22 +222,20 @@ function sendMail(event) {
   // Prepare the parameters for the email service
   var params = {
       email: email,
-      // You can add more parameters if needed
   };
 
-  const serviceID = "service_4ezgvn9";
-  const templateID = "template_kom7p67";
+  const serviceID = "service_4ezgvn9"; // Your EmailJS service ID
+  const templateID = "template_kom7p67"; // Your EmailJS template ID
 
   // Send the email using EmailJS
   emailjs.send(serviceID, templateID, params)
       .then(res => {
           // Clear the input field after successful submission
           document.querySelector("input[name='email_address']").value = "";
-          console.log(res);
-          alert("Your Message was sent successfully!!");
+          alert("Your message was sent successfully!");
       })
-      .catch(err => console.log(err));
-}
-
-// Attach the sendMail function to the form submission
-document.querySelector('.input-wrapper form').addEventListener('submit', sendMail);
+      .catch(err => {
+          console.error(err);
+          alert("Failed to send your message. Please try again.");
+      });
+});
