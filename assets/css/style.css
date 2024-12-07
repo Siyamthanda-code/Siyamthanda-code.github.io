@@ -1284,6 +1284,9 @@ textarea.input-field {
   margin-block-start: 40px;
 }
 
+.past-event{
+  text-decoration: line-through;
+}
 
 
 
