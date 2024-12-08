@@ -1200,7 +1200,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
         const database = getDatabase(app);
-
+        window.firebase = firebase;
        // Function to convert UTC time to local SAST time
        function convertUTCToLocal(utcDateString) {
         const utcDate = new Date(utcDateString);
