@@ -1,6 +1,4 @@
-const firebase = window.firebase;
-const database = firebase.database();
-const reservationsRef = database.ref('reservations');
+
 
 /**
  * PRELOAD
@@ -172,48 +170,56 @@ window.addEventListener("mousemove", function (event) {
 
 
 /** * RESERVATION */
-document.addEventListener('submit', (e) => {
-  console.log('Form submitted!');
-  if (e.target.classList.contains('form-left')) {
-  e.preventDefault();
-  const nameInput = document.querySelector('input[name="name"]');
-  const phoneInput = document.querySelector('input[name="phone"]');
-  const personSelect = document.querySelector('select[name="person"]');
-  const reservationDateInput = document.querySelector('input[name="reservation-date"]');
-  const timeSelect = document.querySelector('select[name="time"]');
-  const messageInput = document.querySelector('textarea[name="message"]');
+window.onload = function() {
+  if (window.firebase) {
+    const database = window.firebase.database();
+    const reservationsRef = window.reservationsRef;
 
-    if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
-const reservation = {
-name: nameInput.value,
-phone: phoneInput.value,
-numberOfPeople: personSelect.value,
-reservationDate: reservationDateInput.value,
-time: timeSelect.value,
-message: messageInput.value || ''
+    document.addEventListener('submit', (e) => {
+      console.log('Form submitted!');
+      if (e.target.classList.contains('form-left')) {
+        e.preventDefault();
+        const nameInput = document.querySelector('input[name="name"]');
+        const phoneInput = document.querySelector('input[name="phone"]');
+        const personSelect = document.querySelector('select[name="person"]');
+        const reservationDateInput = document.querySelector('input[name="reservation-date"]');
+        const timeSelect = document.querySelector('select[name="time"]');
+        const messageInput = document.querySelector('textarea[name="message"]');
+
+        if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
+          const reservation = {
+            name: nameInput.value,
+            phone: phoneInput.value,
+            numberOfPeople: personSelect.value,
+            reservationDate: reservationDateInput.value,
+            time: timeSelect.value,
+            message: messageInput.value || ''
+          };
+
+          reservationsRef.push(reservation)
+            .then(() => {
+              nameInput.value = '';
+              phoneInput.value = '';
+              personSelect.value = '1-person';
+              reservationDateInput.value = '';
+              timeSelect.value = '08:00am';
+              messageInput.value = '';
+              alert('Reservation submitted successfully!');
+            })
+            .catch((error) => {
+              console.error('Error submitting reservation:', error);
+              alert('There was an error submitting your reservation. Please try again.');
+            });
+        } else {
+          alert('Please fill in all required fields.');
+        }
+      }
+    });
+  } else {
+    console.error("Firebase object not initialized");
+  }
 };
 
-  
-const reservationsRef = window.reservationsRef;
-reservationsRef.push(reservation)
-.then(() => {
-nameInput.value = '';
-phoneInput.value = '';
-personSelect.value = '1-person';
-reservationDateInput.value = '';
-timeSelect.value = '08:00am';
-messageInput.value = '';
-alert('Reservation submitted successfully!');
-})
-.catch((error) => {
-console.error('Error submitting reservation:', error);
-alert('There was an error submitting your reservation. Please try again.');
-});
-} else {
-alert('Please fill in all required fields.');
-}
-}
-});
   
 
 
