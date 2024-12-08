@@ -18,12 +18,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app);
+
 const auth = getAuth(app);
 const database = getDatabase(app);
 window.firebase = firebase;
 
 const reservationsRef = ref(database, 'reservations');
 window.reservationsRef = reservationsRef;
+
 
 // Function to convert UTC time to local SAST time
 function convertUTCToLocal(utcDateString) {
