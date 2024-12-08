@@ -168,11 +168,9 @@ window.addEventListener("mousemove", function (event) {
 
 
 
-/**
- * RESERVATION
- */
-
+/** * RESERVATION */
 document.addEventListener('submit', (e) => {
+  console.log('Form submitted!');
   if (e.target.classList.contains('form-left')) {
   e.preventDefault();
   const nameInput = document.querySelector('input[name="name"]');
@@ -213,8 +211,13 @@ document.addEventListener('submit', (e) => {
   
   }
   });
-
   
+  const form = document.querySelector('.form-left');
+  firebase.database().ref('reservations').on('value', (data) => {
+  console.log('Form data:', data.val());
+  });
+
+
 /**
  * FOOTER
  */
