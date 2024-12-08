@@ -1,6 +1,8 @@
-// Import the functions you need from the SDKs you need
-const database = firebase.database();
-const reservationsRef = database.ref('reservations');
+window.onload = function() {
+  const firebase = window.firebase;
+  const database = firebase.database();
+  const reservationsRef = database.ref('reservations');
+    
 
 /**
  * PRELOAD
@@ -175,14 +177,14 @@ window.addEventListener("mousemove", function (event) {
 document.addEventListener('submit', (e) => {
   console.log('Form submitted!');
   if (e.target.classList.contains('form-left')) {
-    e.preventDefault();
-    const nameInput = document.querySelector('input[name="name"]');
-    const phoneInput = document.querySelector('input[name="phone"]');
-    const personSelect = document.querySelector('select[name="person"]');
-    const reservationDateInput = document.querySelector('input[name="reservation-date"]');
-    const timeSelect = document.querySelector('select[name="time"]');
-    const messageInput = document.querySelector('textarea[name="message"]');
-
+  e.preventDefault();
+  const nameInput = document.querySelector('input[name="name"]');
+  const phoneInput = document.querySelector('input[name="phone"]');
+  const personSelect = document.querySelector('select[name="person"]');
+  const reservationDateInput = document.querySelector('input[name="reservation-date"]');
+  const timeSelect = document.querySelector('select[name="time"]');
+  const messageInput = document.querySelector('textarea[name="message"]');
+  
     if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
       const reservation = {
         name: nameInput.value,
@@ -192,7 +194,7 @@ document.addEventListener('submit', (e) => {
         time: timeSelect.value,
         message: messageInput.value || ''
       };
-
+  
       reservationsRef.push(reservation)
         .then(() => {
           nameInput.value = '';
@@ -211,7 +213,9 @@ document.addEventListener('submit', (e) => {
       alert('Please fill in all required fields.');
     }
   }
-});
+  
+  });
+  }
 
 
 /**
