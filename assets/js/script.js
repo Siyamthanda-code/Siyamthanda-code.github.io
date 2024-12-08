@@ -171,7 +171,7 @@ window.addEventListener("mousemove", function (event) {
 
 /** * RESERVATION */
 window.onload = function() {
-  if (window.firebase) {
+  if (window.firebase && window.reservationsRef) {
     const database = window.firebase.database();
     const reservationsRef = window.reservationsRef;
 
@@ -216,7 +216,7 @@ window.onload = function() {
       }
     });
   } else {
-    console.error("Firebase object not initialized");
+    console.error("Firebase object or reservationsRef not initialized");
   }
 };
 
