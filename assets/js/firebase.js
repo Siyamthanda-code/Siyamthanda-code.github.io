@@ -19,10 +19,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-        const database = getDatabase(app);
-        window.firebase = firebase;
-       // Function to convert UTC time to local SAST time
-       function convertUTCToLocal(utcDateString) {
-        const utcDate = new Date(utcDateString);
-        return utcDate.toLocaleString("en-GB", { timeZone: "Africa/Johannesburg" });
-    } 
+const database = getDatabase(app);
+window.firebase = firebase;
+
+const reservationsRef = ref(database, 'reservations');
+window.reservationsRef = reservationsRef;
+
+// Function to convert UTC time to local SAST time
+function convertUTCToLocal(utcDateString) {
+  const utcDate = new Date(utcDateString);
+  return utcDate.toLocaleString("en-GB", { timeZone: "Africa/Johannesburg" });
+}

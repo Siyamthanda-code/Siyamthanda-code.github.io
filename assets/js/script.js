@@ -182,36 +182,38 @@ document.addEventListener('submit', (e) => {
   const reservationDateInput = document.querySelector('input[name="reservation-date"]');
   const timeSelect = document.querySelector('select[name="time"]');
   const messageInput = document.querySelector('textarea[name="message"]');
-  
+
     if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
-      const reservation = {
-        name: nameInput.value,
-        phone: phoneInput.value,
-        numberOfPeople: personSelect.value,
-        reservationDate: reservationDateInput.value,
-        time: timeSelect.value,
-        message: messageInput.value || ''
-      };
+const reservation = {
+name: nameInput.value,
+phone: phoneInput.value,
+numberOfPeople: personSelect.value,
+reservationDate: reservationDateInput.value,
+time: timeSelect.value,
+message: messageInput.value || ''
+};
+
   
-      reservationsRef.push(reservation)
-        .then(() => {
-          nameInput.value = '';
-          phoneInput.value = '';
-          personSelect.value = '1-person';
-          reservationDateInput.value = '';
-          timeSelect.value = '08:00am';
-          messageInput.value = '';
-          alert('Reservation submitted successfully!');
-        })
-        .catch((error) => {
-          console.error('Error submitting reservation:', error);
-          alert('There was an error submitting your reservation. Please try again.');
-        });
-    } else {
-      alert('Please fill in all required fields.');
-    }
-  }
-  });
+const reservationsRef = window.reservationsRef;
+reservationsRef.push(reservation)
+.then(() => {
+nameInput.value = '';
+phoneInput.value = '';
+personSelect.value = '1-person';
+reservationDateInput.value = '';
+timeSelect.value = '08:00am';
+messageInput.value = '';
+alert('Reservation submitted successfully!');
+})
+.catch((error) => {
+console.error('Error submitting reservation:', error);
+alert('There was an error submitting your reservation. Please try again.');
+});
+} else {
+alert('Please fill in all required fields.');
+}
+}
+});
   
 
 
