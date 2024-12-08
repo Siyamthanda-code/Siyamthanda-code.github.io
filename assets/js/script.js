@@ -1,3 +1,6 @@
+const firebase = window.firebase;
+const database = firebase.database();
+const reservationsRef = database.ref('reservations');
 
 /**
  * PRELOAD
