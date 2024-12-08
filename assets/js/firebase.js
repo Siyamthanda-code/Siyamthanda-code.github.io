@@ -22,9 +22,12 @@ console.log('Firebase initialized:', app);
 
 const auth = getAuth(app);
 const database = getDatabase(app);
-window.firebase = firebase;
+console.log('Database initialized:', database);
 
 const reservationsRef = ref(database, 'reservations');
+console.log('ReservationsRef initialized:', reservationsRef);
+
+window.firebase = app;
 window.reservationsRef = reservationsRef;
 
 
