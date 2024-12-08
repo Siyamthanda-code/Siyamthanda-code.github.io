@@ -233,9 +233,25 @@ form.addEventListener('submit', (e) => {
  * FOOTER
  */
 
-// Initialize EmailJS with your user ID
+// Initialize EmailJS with your public key and additional settings
 (function(){
-  emailjs.init("Siyamthanda"); // Replace with your EmailJS user ID
+  emailjs.init({
+    publicKey: 'wLU48TQDY13rFak04', // Replace with your actual EmailJS public key
+    // Do not allow headless browsers
+    blockHeadless: true,
+    blockList: {
+      // Block the suspended emails
+      list: ['foo@emailjs.com', 'bar@emailjs.com'],
+      // The variable contains the email address
+      watchVariable: 'userEmail',
+    },
+    limitRate: {
+      // Set the limit rate for the application
+      id: 'app',
+      // Allow 1 request per 10s
+      throttle: 10000,
+    },
+  });
 })();
 
 document.getElementById('subscribe-form').addEventListener('submit', function(event) {
@@ -263,4 +279,9 @@ document.getElementById('subscribe-form').addEventListener('submit', function(ev
           console.error(err);
           alert("Failed to send your message. Please try again.");
       });
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+}
 });
