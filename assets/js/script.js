@@ -171,9 +171,10 @@ window.addEventListener("mousemove", function (event) {
 
 /** * RESERVATION */
 window.onload = function() {
-  if (window.firebase && window.reservationsRef) {
-    const database = window.firebase.database();
-    const reservationsRef = window.reservationsRef;
+  setTimeout(function() {
+    if (window.firebase && window.reservationsRef) {
+      const reservationsRef = window.reservationsRef;
+
 
     document.addEventListener('submit', (e) => {
       console.log('Form submitted!');
@@ -218,7 +219,9 @@ window.onload = function() {
   } else {
     console.error("Firebase object or reservationsRef not initialized");
   }
+}, 1000); // wait for 1 second before trying to access the objects
 };
+
 
   
 
