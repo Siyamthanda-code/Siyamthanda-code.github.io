@@ -172,62 +172,55 @@ window.addEventListener("mousemove", function (event) {
  * RESERVATION
  */
 
-// Get the form element
-const form = document.querySelector('.form-left');
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.form-left');
 
-// Add an event listener to the form's submit event
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+  form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Prevent the default form submission
 
-  // Get the input fields
-  const nameInput = document.querySelector('input[name="name"]');
-  const phoneInput = document.querySelector('input[name="phone"]');
-  const personSelect = document.querySelector('select[name="person"]');
-  const reservationDateInput = document.querySelector('input[name="reservation-date"]');
-  const timeSelect = document.querySelector('select[name="time"]'); 
-  const messageInput = document.querySelector('textarea[name="message"]');
+      // Get input values
+      const nameInput = document.querySelector('input[name="name"]');
+      const phoneInput = document.querySelector('input[name="phone"]');
+      const personSelect = document.querySelector('select[name="person"]');
+      const reservationDateInput = document.querySelector('input[name="reservation-date"]');
+      const timeSelect = document.querySelector('select[name="time"]'); 
+      const messageInput = document.querySelector('textarea[name="message"]');
 
-  // Check if all required fields are filled out
-  if (
-    nameInput.value !== '' &&
-    phoneInput.value !== '' &&
-    personSelect.value !== '' &&
-    reservationDateInput.value !== '' &&
-    timeSelect.value !== ''
-  ) {
-    // Create a reservation object
-    const reservation = {
-      name: nameInput.value,
-      phone: phoneInput.value,
-      numberOfPeople: personSelect.value,
-      reservationDate: reservationDateInput.value,
-      time: timeSelect.value,
-      message: messageInput.value || '' // Optional message
-    };
+      // Check if all required fields are filled
+      if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
+          const reservation = {
+              name: nameInput.value,
+              phone: phoneInput.value,
+              numberOfPeople: personSelect.value,
+              reservationDate: reservationDateInput.value,
+              time: timeSelect.value,
+              message: messageInput.value || ''
+          };
 
-    // Push the reservation to the Firebase database
-    const reservationsRef = firebase.database().ref('reservations');
-    reservationsRef.push(reservation)
-      .then(() => {
-        // Clear the form fields after successful submission
-        nameInput.value = '';
-        phoneInput.value = '';
-        personSelect.value = '1-person'; // Reset to default
-        reservationDateInput.value = '';
-        timeSelect.value = '08:00am'; // Reset to default
-        messageInput.value = '';
-        alert('Reservation submitted successfully!');
-      })
-      .catch((error) => {
-        console.error('Error submitting reservation:', error);
-        alert('There was an error submitting your reservation.Please try again.');
-      });
-  } else {
-    // If any field is missing, prompt an error message
-    alert('Please fill out all required information.');
-  }
+          // Reference to the Firebase database
+          const reservationsRef = firebase.database().ref('reservations');
+          reservationsRef.push(reservation)
+              .then(() => {
+                  // Clear the form fields after successful submission
+                  nameInput.value = '';
+                  phoneInput.value = '';
+                  personSelect.value = '1-person'; // Reset to default
+                  reservationDateInput.value = '';
+                  timeSelect.value = '08:00am'; // Reset to default
+                  messageInput.value = '';
+
+                  // Provide feedback to the user
+                  alert('Reservation submitted successfully!');
+              })
+              .catch((error) => {
+                  console.error('Error submitting reservation:', error);
+                  alert('There was an error submitting your reservation. Please try again.');
+              });
+      } else {
+          alert('Please fill in all required fields.');
+      }
+  });
 });
-
 
 /**
  * FOOTER
