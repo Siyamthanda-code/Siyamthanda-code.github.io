@@ -12,8 +12,8 @@ Welcome to **BITE**, a web application designed for a local restaurant that allo
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript 
-- **Backend**: Node.js
-- **Database**: Firebase Realtime Database
+- **Additional Tools**: EmailJS
+- **Database**: MySQL (SQL)
 - **Hosting**: GitHub Pages
 
 ## Getting Started
