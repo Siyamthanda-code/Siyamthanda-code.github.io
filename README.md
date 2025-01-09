@@ -29,11 +29,11 @@ To get a local copy of the project up and running, follow these simple steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Siyamthanda-code/BITE.git
+   git clone https://github.com/Siyamthanda-code/Siyamthanda-code.github.io
 
 2. Navigate into the project directory
    ```bash
-   cd BITE
+   cd Siyamthanda-code.github.io
 
 3. Install the necessary dependancies
    ```bash
