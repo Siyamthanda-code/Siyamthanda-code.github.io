@@ -764,82 +764,64 @@ At Bite, we're not just serving food – we're serving moments. Moments of joy, 
 
           <div class="form reservation-form bg-black-10">
 
-            <form action="" class="form-left">
+            <form id="reservation-form" class="form-left">
+    <h2 class="headline-1 text-center">Online Reservation</h2>
+    <p class="form-text text-center">
+        Booking request <a href="tel:+27739876543" class="link">+27 73 987 6543</a>
+        or fill out the order form
+    </p>
+    <div class="input-wrapper">
+        <input type="text" name="name" placeholder="Your Name" autocomplete="off" class="input-field" required>
+        <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off" class="input-field" required>
+    </div>
+    <div class="input-wrapper">
+        <div class="icon-wrapper">
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+            <select name="person" class="input-field" required>
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6 People</option>
+                <option value="7">7 People</option>
+            </select>
+            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+        <div class="icon-wrapper">
+            <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
+            <input type="date" name="reservation-date" class="input-field" required>
+            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+        <div class="icon-wrapper">
+            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+            <select name="time" class="input-field" required>
+                <option value="08:00">08:00 am</option>
+                <option value="09:00">09:00 am</option>
+                <option value="10:00">10:00 am</option>
+                <option value="11:00">11:00 am</option>
+                <option value="12:00">12:00 pm</option>
+                <option value="13:00">01:00 pm</option>
+                <option value="14:00">02:00 pm</option>
+                <option value="15:00">03:00 pm</option>
+                <option value="16:00">04:00 pm</option>
+                <option value="17:00">05:00 pm</option>
+                <option value="18:00">06:00 pm</option>
+                <option value="19:00">07:00 pm</option>
+                <option value="20:00">08:00 pm</option>
+                <option value="21:00">09:00 pm</option>
+                <option value="22:00">10:00 pm</option>
+            </select>
+            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
+        </div>
+    </div>
+    <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
+    <button type="submit" class="btn btn-secondary">
+        <span class="text text-1">Book A Table</span>
+        <span class="text text-2" aria-hidden="true">Book A Table</span>
+    </button>
+</form>
 
-              <h2 class="headline-1 text-center">Online Reservation</h2>
-
-              <p class="form-text text-center">
-                Booking request <a href="tel:+27739876543" class="link">+27 73 987 6543</a>
-                or fill out the order form
-              </p>
-
-              <div class="input-wrapper">
-                <input type="text" name="name" placeholder="Your Name" autocomplete="off" class="input-field">
-
-                <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off" class="input-field">
-              </div>
-
-              <div class="input-wrapper">
-
-                <div class="icon-wrapper">
-                  <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-
-                  <select name="person" class="input-field">
-                    <option value="1-person">1 Person</option>
-                    <option value="2-person">2 People</option>
-                    <option value="3-person">3 People</option>
-                    <option value="4-person">4 People</option>
-                    <option value="5-person">5 People</option>
-                    <option value="6-person">6 People</option>
-                    <option value="7-person">7 People</option>
-                  </select>
-
-                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                </div>
-
-                <div class="icon-wrapper">
-                  <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
-
-                  <input type="date" name="reservation-date" class="input-field">
-
-                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                </div>
-
-                <div class="icon-wrapper">
-                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-
-                  <select name="time" class="input-field">
-                    <option value="08:00am">08 : 00 am</option>
-                    <option value="09:00am">09 : 00 am</option>
-                    <option value="10:00am">10 : 00 am</option>
-                    <option value="11:00am">11 : 00 am</option>
-                    <option value="12:00am">12 : 00 am</option>
-                    <option value="01:00pm">01 : 00 pm</option>
-                    <option value="02:00pm">02 : 00 pm</option>
-                    <option value="03:00pm">03 : 00 pm</option>
-                    <option value="04:00pm">04 : 00 pm</option>
-                    <option value="05:00pm">05 : 00 pm</option>
-                    <option value="06:00pm">06 : 00 pm</option>
-                    <option value="07:00pm">07 : 00 pm</option>
-                    <option value="08:00pm">08 : 00 pm</option>
-                    <option value="09:00pm">09 : 00 pm</option>
-                    <option value="10:00pm">10 : 00 pm</option>
-                  </select>
-
-                  <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                </div>
-
-              </div>
-
-              <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
-
-              <button type="submit" class="btn btn-secondary">
-                <span class="text text-1">Book A Table</span>
-
-                <span class="text text-2" aria-hidden="true">Book A Table</span>
-              </button>
-
-            </form>
 
             <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')">
 

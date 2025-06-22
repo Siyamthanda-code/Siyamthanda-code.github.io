@@ -1,0 +1,17 @@
+{
+  "name": "siyamthanda-code.github.io",
+  "version": "1.0.0",
+  "description": "Welcome to **BITE**, a web application designed for a local restaurant that allows users to book tables and view menu options seamlessly. This project aims to enhance the dining experience by providing an easy-to-use platform for customers to reserve their tables and explore the menu.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.2"
+  }
+}

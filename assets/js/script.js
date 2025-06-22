@@ -171,56 +171,58 @@ window.addEventListener("mousemove", function (event) {
 
 /** * RESERVATION */
 window.onload = function() {
-  setTimeout(function() {
-    if (window.firebase && window.reservationsRef) {
-      const reservationsRef = window.reservationsRef;
+    document.addEventListener('submit', async (e) => {
+        console.log('Form submitted!');
+        if (e.target.classList.contains('form-left')) {
+            e.preventDefault();
+            const nameInput = document.querySelector('input[name="name"]');
+            const phoneInput = document.querySelector('input[name="phone"]');
+            const personSelect = document.querySelector('select[name="person"]');
+            const reservationDateInput = document.querySelector('input[name="reservation-date"]');
+            const timeSelect = document.querySelector('select[name="time"]');
+            const messageInput = document.querySelector('textarea[name="message"]');
 
+            if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
+                const reservation = {
+                    name: nameInput.value,
+                    phone: phoneInput.value,
+                    numberOfPeople: personSelect.value,
+                    reservationDate: reservationDateInput.value,
+                    time: timeSelect.value,
+                    message: messageInput.value || ''
+                };
 
-    document.addEventListener('submit', (e) => {
-      console.log('Form submitted!');
-      if (e.target.classList.contains('form-left')) {
-        e.preventDefault();
-        const nameInput = document.querySelector('input[name="name"]');
-        const phoneInput = document.querySelector('input[name="phone"]');
-        const personSelect = document.querySelector('select[name="person"]');
-        const reservationDateInput = document.querySelector('input[name="reservation-date"]');
-        const timeSelect = document.querySelector('select[name="time"]');
-        const messageInput = document.querySelector('textarea[name="message"]');
+                try {
+                    const response = await fetch('http://localhost:3000/api/reservations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(reservation),
+                    });
 
-        if (nameInput.value && phoneInput.value && personSelect.value && reservationDateInput.value && timeSelect.value) {
-          const reservation = {
-            name: nameInput.value,
-            phone: phoneInput.value,
-            numberOfPeople: personSelect.value,
-            reservationDate: reservationDateInput.value,
-            time: timeSelect.value,
-            message: messageInput.value || ''
-          };
-
-          reservationsRef.push(reservation)
-            .then(() => {
-              nameInput.value = '';
-              phoneInput.value = '';
-              personSelect.value = '1-person';
-              reservationDateInput.value = '';
-              timeSelect.value = '08:00am';
-              messageInput.value = '';
-              alert('Reservation submitted successfully!');
-            })
-            .catch((error) => {
-              console.error('Error submitting reservation:', error);
-              alert('There was an error submitting your reservation. Please try again.');
-            });
-        } else {
-          alert('Please fill in all required fields.');
+                    if (response.ok) {
+                        nameInput.value = '';
+                        phoneInput.value = '';
+                        personSelect.value = '1-person';
+                        reservationDateInput.value = '';
+                        timeSelect.value = '08:00am';
+                        messageInput.value = '';
+                        alert('Reservation submitted successfully!');
+                    } else {
+                        alert('There was an error submitting your reservation. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error submitting reservation:', error);
+                    alert('There was an error submitting your reservation. Please try again.');
+                }
+            } else {
+                alert('Please fill in all required fields.');
+            }
         }
-      }
     });
-  } else {
-    console.error("Firebase object or reservationsRef not initialized");
-  }
-}, 1000); // wait for 1 second before trying to access the objects
 };
+
 
 
   
