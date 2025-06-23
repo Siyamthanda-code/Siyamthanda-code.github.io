@@ -44,4 +44,4 @@ To get a local copy of the project up and running, follow these simple steps:
    npm start
 
 ### Live Demo
-https://siyamthanda-code.github.io/
+https://biterestaurant.vercel.app/
