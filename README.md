@@ -1,6 +1,7 @@
 # BITE - Local Restaurant Booking System
 
 Welcome to **BITE**, a web application designed for a local restaurant that allows users to book tables and view menu options seamlessly. This project aims to enhance the dining experience by providing an easy-to-use platform for customers to reserve their tables and explore the menu.
+![Bite Screenshot](HOME.PNG)
 
 ## Features
 
