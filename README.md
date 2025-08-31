@@ -14,7 +14,7 @@ Welcome to **BITE**, a web application designed for a local restaurant that allo
 - **Frontend**: HTML, CSS, JavaScript 
 - **Additional Tools**: NodeJS, EmailJS
 - **Database**: NeonDB PostgreSQL 
-- **Hosting**: GitHub Pages
+- **Hosting**: GitHub Pages, Vercel (for client-server/database response)
 
 ## Getting Started
 
