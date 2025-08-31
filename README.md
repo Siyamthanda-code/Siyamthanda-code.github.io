@@ -9,6 +9,9 @@ Welcome to **BITE**, a web application designed for a local restaurant that allo
 - **Menu Options**: View a comprehensive menu with descriptions and prices of available dishes.
 - **Responsive Design**: The application is designed to be mobile-friendly, ensuring a great user experience on all devices.
 - **User -Friendly Interface**: Intuitive navigation for a smooth browsing experience.
+![Bite Screenshot](MENU.PNG)
+![Bite Screenshot](Book.PNG)
+![Bite Screenshot](BOOKERROR.PNG)
 
 ## Technologies Used
 
